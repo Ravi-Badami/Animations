@@ -1,0 +1,27 @@
+body {
+	 background: #15161f;
+}
+ svg {
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+}
+ .path {
+	 animation: dash 1.75s ease-out infinite;
+	 stroke-linecap: round;
+}
+ @keyframes dash {
+	 0% {
+		 stroke-dasharray: 0, 158;
+		 stroke-dashoffset: 0;
+	}
+	 50% {
+		 stroke-dasharray: 79, 158;
+		 stroke-dashoffset: -30px;
+	}
+	 100% {
+		 stroke-dasharray: 0, 158;
+		 stroke-dashoffset: -158px;
+	}
+}
+ 

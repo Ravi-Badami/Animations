@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scroll Reveal Pages</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: 'Fira Sans', sans-serif;
+      background: #f1f0f9;
+      cursor: none;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      mix-blend-mode: difference;
+    }
+
+    .scene {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .page {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5vw;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .page1 {
+      background-color: #f1f0f9;
+      color: #0c0b0e;
+      z-index: 1;
+    }
+
+    .page2 {
+      background-color: #0c0b0e;
+      color: #f1f0f9;
+      z-index: 2;
+      mask: url(#mask);
+      -webkit-mask: url(#mask);
+      mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
+    }
+
+    svg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <div class="scene">
+    <div class="page page1">
+      Scroll to Reveal
+    </div>
+    <div class="page page2">
+      Welcome to Page 2
+    </div>
+  </div>
+
+  <svg>
+    <defs>
+      <mask id="mask">
+        <rect width="100%" height="100%" fill="white"/>
+      </mask>
+    </defs>
+  </svg>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const svgNS = "http://www.w3.org/2000/svg";
+    const mask = document.getElementById("mask");
+
+    document.addEventListener("mousemove", (e) => {
+      const { clientX, clientY } = e;
+
+      // Move the custom cursor
+      cursor.style.left = clientX + "px";
+      cursor.style.top = clientY + "px";
+
+      // Create circle in mask to reveal background
+      const circle = document.createElementNS(svgNS, "circle");
+      circle.setAttribute("cx", clientX);
+      circle.setAttribute("cy", clientY);
+      circle.setAttribute("r", 60);
+      circle.setAttribute("fill", "black");
+      mask.appendChild(circle);
+
+      // Optional: clean up old circles for performance
+      if (mask.childNodes.length > 200) {
+        mask.removeChild(mask.childNodes[1]);
+      }
+    });
+  </script>
+</body>
+</html>
