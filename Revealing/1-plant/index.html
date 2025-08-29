@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plant Card</title>
+
+    <!-- Font Awesome Free CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-Tm0lGZmGk6QpTzVjvBzEYs0Fx1pM1oN0R4uYxgRBIx2kU8Q7x9t3jT1MZ5r7QZ6Ugh6whtZZkGf5yWfRfi1N/A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-200 h-screen flex flex-col justify-center items-center">
+    <main>
+      <div
+        id="card"
+        class="group relative h-72 w-60 bg-teal-300/30 shadow-lg rounded-xl shadow-black/30 overflow-hidden">
+        <!-- Image -->
+        <header
+          class="absolute top-0 flex justify-center w-full transition-all duration-700 group-hover:-top-32 z-10 px-2">
+          <img
+            class="object-contain rounded-lg shadow-lg shadow-black/30"
+            src="https://images.unsplash.com/photo-1597305877032-0668b3c6413a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1964&q=80"
+            alt="Plant Image" />
+        </header>
+
+        <!-- Content -->
+        <section class="w-full h-full p-3 text-white flex flex-col gap-1 justify-end">
+          <h1 id="name" class="text-2xl font-bold text-green-500 tracking-tight">Plant Name</h1>
+          <p id="description" class="text-black/70 font-semibold">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+            invidunt ut labore.
+          </p>
+        </section>
+
+        <!-- Arrow Icon -->
+        <div
+          class="absolute bottom-4 -right-5 transition-all duration-700 group-hover:-translate-y-32">
+          <i
+            class="fa-solid fa-arrow-up text-xl text-black/70 group-hover:rotate-180 transition-transform duration-700"></i>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
